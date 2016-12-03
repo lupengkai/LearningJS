@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="test-form">
+    <input type="text" name="test"
+    <button type="button" onclick="doSubmitForm()">Submit</button>
+</form>
+
+
+<script>
+    function doSubmitForm() {
+        var form = document.getElementById('test-form');
+
+        form.submit();
+
+    }
+</script>
+
+
+<form id="test-form2" onsubmit="return checkForm()">
+    <input type="text" name="test">
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    function checkForm() {
+        var form = document.getElementById('test-form2');
+        return true;
+
+    }
+</script>
+
+<form id="login-form" method="post" onsubmit="return checkForm2()">
+    <input type="text" id="username" name="username">
+    <input type="password" id="input-password">
+   <!-- 没有name属性的<input>的数据不会被提交-->
+    <input type="hidden" id="md5-password" name="password">
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    function checkForm2() {
+        var input_pwd = document.getElementById('input-password');
+        var md5_pwd = document.getElementById('md5-password');
+        md5_pwd.value = toMD5(input_pwd.value);
+        return true;
+    }
+</script>
+
+<script>
+    var checkRegisterForm = function () {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var password2 = document.getElementById('password-2').value;
+        var err_text = document.getElementById('test-error');
+        var reg_username = /^\w{3,10}$/;
+        var reg_password = /^.{6,20}$/;
+        if( password !== password2) {
+            err_text.innerHTML = 'password not same';
+            return　false;
+        } else if (!reg_username.test(username)) {
+            err_text.innerHTML='username not valid';
+            return false;
+        } else if (!reg_password.test(password)) {
+            err_text.innerHTML = 'password not valid'
+            return false;
+        } else {
+            err_text.innerHTML = "";
+            return true;
+        }
+
+    }
+
+</script>
+
+
+
+
+</body>
+</html>

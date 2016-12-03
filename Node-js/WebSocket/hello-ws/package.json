@@ -1,0 +1,11 @@
+{
+  "name": "hello-ws",
+  "main": "start.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+
+  "dependencies": {
+    "ws": "1.1.1"
+  }
+}
